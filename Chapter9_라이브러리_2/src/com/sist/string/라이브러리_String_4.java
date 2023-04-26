@@ -32,6 +32,10 @@ public class 라이브러리_String_4 {
 			if(data.charAt(i)==data.charAt(j))
 			{
 				bCheck=true;
+			}else
+			{
+				bCheck=false;
+				break;
 			}
 			j--;
 		}

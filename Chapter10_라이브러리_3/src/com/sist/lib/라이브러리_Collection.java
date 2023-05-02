@@ -1,6 +1,7 @@
 package com.sist.lib;
 /*
  *  컬렉션 프레임워크
+
  *  -------------
  *  1. 다수의 데이터를 쉽고 효율적으로 처리할 수 있게 만든 표준화된 클래스의 집합
  *                  --------------- 자바에서 라이브러리로 지원
@@ -23,7 +24,7 @@ package com.sist.lib;
  *     Queue(FIFO), Stack(LIFO)
  *     -----------  -----------
  *     순서적으로        뒤에서   ==> 1차원 배열
- *     for(int i=0;0<ar.length;i++)
+ *     for(int i=0;i=<ar.length;i++)
  *     {
  *       값 설정
  *     }
@@ -149,22 +150,39 @@ public class 라이브러리_Collection {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Set set=new HashSet();
-		set.add("A"); //add(Object o)
-		set.add("B");
-		set.add("C");
-		set.add("D");
-		//중복된 데이터 => 허용하지 않는다
-		set.add("A");
-		set.add("B");
-		set.add("C");
-		//출력
-		for(Object o:set)
+//		Set set=new HashSet();
+//		set.add("A"); //add(Object o)
+//		set.add("B");
+//		set.add("C");
+//		set.add("D");
+//		//중복된 데이터 => 허용하지 않는다
+//		set.add("A");
+//		set.add("B");
+//		set.add("C");
+//		//출력
+//		for(Object o:set)
+//		{
+//			// for-each구문은 형변환이 안된다
+//			String s=(String)o; //형변환 하는 법
+//			System.out.print(s+" ");
+//		}
+		int[] aa=new int[10];
+		
+		for(int i=0;i<aa.length;i++)
 		{
-			// for-each구문은 형변환이 안된다
-			String s=(String)o; //형변환 하는 법
-			System.out.print(s+" ");
+			aa[i]=(int)(Math.random()*100)+1;
+			
 		}
+		
+		for(int i=0;i<aa.length;i++)
+		{
+			System.out.print(aa[i]+" ");
+		}
+		
+		
+		
+		
+		
 	}
 
 }

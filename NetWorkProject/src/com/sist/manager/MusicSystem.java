@@ -4,6 +4,7 @@ import java.util.*;
 public class MusicSystem {
 	
 	private static List<MelonMusicVO> list = new ArrayList<MelonMusicVO>();
+	private static List<MelonMusicHomeVO> hList = new ArrayList<MelonMusicHomeVO>();
 	
 	static
 	{
@@ -14,6 +15,21 @@ public class MusicSystem {
 			fis = new FileInputStream("c:\\java_datas\\Melon_MusicData.txt");
 			ois = new ObjectInputStream(fis);
 			list = (List<MelonMusicVO>)ois.readObject();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally {
+			try {
+				fis.close();
+				ois.close();
+			}catch(Exception ex){}
+		}
+		try
+		{
+			fis = new FileInputStream("c:\\java_datas\\Melon_MusicDataHome.txt");
+			ois = new ObjectInputStream(fis);
+			hList = (List<MelonMusicHomeVO>)ois.readObject();
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -38,5 +54,35 @@ public class MusicSystem {
 		}
 		return mList;
 	}
+	
+	//홈 뮤직데이터 6개씩 나눠서 전송
+	public List<MelonMusicHomeVO> albumListData(int page){
+		List<MelonMusicHomeVO> gList = new ArrayList<MelonMusicHomeVO>();
+		int j=0; 
+		int rowSize=6;
+		int start=(page-1)*rowSize;
+		
+		for(int i=0;i<list.size();i++) {
+			if(albumTotlaPage() == page) {
+				if(j<hList.size()%rowSize && i>=start) {
+					gList.add(hList.get(i));
+					j++;
+				}
+			} else {
+				if(j<rowSize && i>=start) {
+					gList.add(hList.get(i));
+					j++;
+				}
+			}
+			
+		}
+		
+		return gList;
+	}
+	
+	public int albumTotlaPage() {
+		return (int)(Math.ceil(hList.size()/6.0));
+	}
+	
 
 }

@@ -1,14 +1,17 @@
 package com.sist.temp;
 
 import java.awt.*;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import javax.swing.text.Document;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+
+import com.sist.inter.ChatInterface;
 //750 730
-public class ChatPanel extends JPanel {
+public class ChatPanel extends JPanel implements ChatInterface{
 	JTextPane pane; //편집이 된다
 	JTextField tf;
 	JButton b1,b2;
@@ -40,7 +43,14 @@ public class ChatPanel extends JPanel {
 		//테이블
 		String [] col= {"아이디","이름","성별"};
 		String[][] row=new String[0][3];
-		model=new DefaultTableModel(row,col);
+		model=new DefaultTableModel(row,col)
+		{
+			@Override
+			public boolean isCellEditable(int row, int column)
+			{
+				return false; //편집 안되게 하기
+			}
+		};
 		table=new JTable(model);
 		JScrollPane js2=new JScrollPane(table);
 		b1=new JButton("쪽지보내기");
@@ -59,8 +69,10 @@ public class ChatPanel extends JPanel {
 		add(tf);add(box);
 		add(js2);
 		add(p);
-		String[] data= {"hong","홍길동","남자"};
-		model.addRow(data);
+		b1.setEnabled(false);//비활성화
+		b2.setEnabled(false);//비활성화
+		//String[] data= {"hong","홍길동","남자"};
+		//model.addRow(data);
 		
 		//이벤트
 

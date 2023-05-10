@@ -1,3 +1,4 @@
+
 package com.sist.temp;
 
 import java.awt.*;
@@ -10,9 +11,10 @@ import java.util.*;
 import java.util.List;
 
 import com.sist.common.ImageChange;
+import com.sist.inter.FindInterface;
 import com.sist.manager.*;
 import java.awt.event.*;
-public class FindPanel extends JPanel implements ActionListener{ //JPanel=화면
+public class FindPanel extends JPanel implements ActionListener,FindInterface{ //JPanel=화면
 	JTextField tf;
 	JButton b1;
 	JButton b2,b3,b4,b5,b6,b7;
